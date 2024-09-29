@@ -1,3 +1,7 @@
+// Write a C++ program that inputs a polynomial expression and shows the result after evaluating the polynomial expression. Make use of a structure to store coefficient and exponent values of each term of the polynomial expression. Create a modular program with the following functions-
+// Input_poly() - To input the polynomial expression with N terms. For each term ask the user to input coefficient and exponent values.
+// Evaluate_poly()- To evaluate the polynomial expression and then returns the result to the calling routine.
+// Write a main() function that exercises the above structure and functions.
 #include <iostream>
 #include <math.h>
 using namespace std;

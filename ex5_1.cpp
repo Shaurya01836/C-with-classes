@@ -1,3 +1,5 @@
+//Write a normal function which adds objects of the complex number class. Declare the normal function as friend of the complex class.
+
 #include <iostream>
 using namespace std;
 class complex_no

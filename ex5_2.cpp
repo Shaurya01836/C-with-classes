@@ -1,3 +1,7 @@
+//Write a class whose member function access data members using 'this' pointer. Write a main () function to exercise this class. 
+
+
+
 #include<iostream>
 using namespace std;
 class test
