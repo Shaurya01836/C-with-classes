@@ -41,9 +41,10 @@ public:
 int sample::cnt = 0;
 int main()
 {
-    sample s1, s2, s3, s4;
+    sample s1, s2, s3;
     s1.ShowData();
     s2.ShowData();
     s3.ShowData();
+    sample::count();
     return 0;
 }
