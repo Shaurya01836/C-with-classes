@@ -6,7 +6,6 @@
 // subtract a larger number from a smaller one (that is,
 // negative distances are not allowed).
 
-
 #include <iostream>
 using namespace std;
 
@@ -41,19 +40,18 @@ public:
         cout << feet << " Feet " << inches << " Inches " << endl;
     }
 
-    Distance AddDistance(const Distance &) const;
+    Distance operator-(Distance);
 };
 
-Distance Distance::AddDistance(const Distance &d2) const
+Distance Distance::operator-(Distance d2)
 {
     Distance temp;
-    temp.feet = feet + d2.feet;
-    temp.inches = inches + d2.inches;
-    if (temp.inches >= 12)
-    {
-        temp.inches -= 12;
-        temp.feet += 1;
-    }
+    float t1, t2, t3;
+    t1 = (feet * 12) + inches;
+    t2 = (d2.feet * 12) + d2.inches;
+    t3 = t1 - t2;
+    temp.feet = t3 / 12;
+    temp.inches = t3 - (temp.feet * 12);
     return temp;
 }
 
@@ -66,10 +64,10 @@ int main()
     d1.ShowData();
     cout << "Enter the distance 2" << endl;
     d2.GetData();
-     cout << "Distance 2 is : ";
+    cout << "Distance 2 is : ";
     d2.ShowData();
-    d3 = d1.AddDistance(d2);
-     cout << "Addition of the distances is : ";
+    d3 = d1 - d2;
+    cout << "Difference of the distances is : ";
     d3.ShowData();
     return 0;
 }
