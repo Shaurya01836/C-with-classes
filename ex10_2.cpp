@@ -1,3 +1,5 @@
+// Write a program to throw separate exceptions for attempting to push data on a full stack and attempting to pop data from an empty stack.
+
 #include<iostream>
 using namespace std;
 #define MAX 4

@@ -1,3 +1,5 @@
+// Write a program that implements stack class as a class template.
+
 #include<iostream>
 using namespace std;
 #define MAX 4
@@ -14,6 +16,7 @@ public:
     void push(T);//function declaration
     T pop();//function declaration
 };
+
 //Specifying class member functions outside of the class
 template <class T>
 void Stack<T>::push(T val )
@@ -40,15 +43,14 @@ int main()
 {
     Stack <int>s1;
     Stack<float>s2;
-    s1.push(10);
-    s1.push(20);
-    s1.push(30);
-    s2.push(1.1);
+    s1.push(100);
+    s1.push(50);
+    s1.push(64);
+    s2.push(2.1);
     cout<<s1.pop()<<endl;
     cout<<s1.pop()<<endl;
     cout<<s1.pop()<<endl;
     cout<<s2.pop()<<endl;
-
     cout<<s2.pop()<<endl;//stack underflow
     return 0;
 }

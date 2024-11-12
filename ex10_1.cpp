@@ -1,3 +1,5 @@
+// Write a program that handles a division by zero exception.
+
 #include<iostream>
 using namespace std;
 class number

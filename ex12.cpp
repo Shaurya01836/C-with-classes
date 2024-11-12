@@ -1,3 +1,5 @@
+// Write a program that writes and reads objects to and from a disk.
+
 #include<fstream>
 #include<iostream>
 using namespace std;
