@@ -1,37 +1,36 @@
 // Write a C++ program that reads a text file and creates another file that is identical except that every sequence of consecutive blank spaces is replaced by a single space.
-
-#include<fstream>
-#include<iostream>
+// ex 11.3
+#include <fstream>
+#include <iostream>
 using namespace std;
 int main()
 {
     char ch;
-    ifstream file1("test.txt");
+    ifstream file1("data.txt");
     ofstream file2("test2.txt");
-    if(!file1)
+    if (!file1)
     {
-        cout<<"\n file opening error...";
+        cout << "\n file opening error...";
         return 1;
     }
-    int flag=1;
-    ch=file1.get();
-    while(!file1.eof())
+    int flag = 1;
+    ch = file1.get();
+    while (!file1.eof())
     {
-        if(ch==' '&&flag==1)
+        if (ch == ' ' && flag == 1)
         {
             file2.put(ch);
-            flag=0;
+            flag = 0;
         }
-        else if (ch!=' ')
+        else if (ch != ' ')
         {
-            flag=1;
+            flag = 1;
             file2.put(ch);
         }
-        ch=file1.get();
+        ch = file1.get();
     }
     file1.close();
     file2.close();
-    cout<<"\nThe program was successfully executed...";
+    cout << "\nThe program was successfully executed...";
     return 0;
 }
-

@@ -8,11 +8,11 @@
 using namespace std;
 int main()
 {
-    char ch = 'x';
-    int j = 87;
+    char ch = 's';
+    int j = 7;
     double d = 6.99;
     char str1[] = "oops";
-    char str2[] = " Programming";
+    char str2[] = " programming";
     ofstream out("data.txt");
     out << ch << j << d << str1 << str2 << endl;
     cout << "File Written";
