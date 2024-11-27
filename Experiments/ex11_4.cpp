@@ -21,7 +21,7 @@ int main()
         return 1;
     }
 
-    int spaces = 0, lines = 1, tabs = 0, digits = 0;
+    int spaces = 0, lines = 0, tabs = 0, digits = 0;
     char ch;
 
     while (file.get(ch))
@@ -36,6 +36,10 @@ int main()
             digits++;
     }
 
+    if (file.tellg() != 0)
+    {
+        lines++;
+    }
     file.close();
 
     cout << "Number of spaces: " << spaces << endl;
