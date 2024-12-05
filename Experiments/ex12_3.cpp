@@ -12,9 +12,10 @@ class person
 public:
     void getdata()
     {
+        cout << "Enter modified data:\n";
         cout << "Enter name: ";
         cin >> name;
-        cout << "Enter Age of the person: ";
+        cout << "Enter age of the person: ";
         cin >> age;
     }
     void showdata()
@@ -25,77 +26,39 @@ public:
 
 int main()
 {
-    char ch;
     person pers;
-    fstream file("person.dat", ios::app | ios::out | ios::in | ios::binary);
+    int n;
+    fstream file("person.dat", ios::in | ios::out | ios::binary);
 
-    // Writing data to the file
-    do
+    if (!file)
     {
-        cout << "Enter person's data\n";
+        cout << "File could not be opened!\n";
+        return 1;
+    }
+
+    cout << "Enter the record no. which you want to modify: ";
+    cin >> n;
+
+    file.seekg((n - 1) * sizeof(person));
+    if (file.read((char *)&pers, sizeof(person)))
+    {
+        cout << "Current data in record " << n << ":\n";
+        pers.showdata();
+
         pers.getdata();
-        file.write((char *)&pers, sizeof(pers));
-        cout << "\nEnter another (y/n)? ";
-        cin >> ch;
-    } while (ch == 'y');
 
-    // Reading all records
-    file.seekg(0);
-    cout << "\nAll records in the file:\n";
-    int i = 0;
-    file.read((char *)&pers, sizeof(pers));
-    while (!file.eof())
-    {
-        cout << "Person " << ++i << ": ";
+        file.seekp((n - 1) * sizeof(person));
+        file.write((char *)&pers, sizeof(person));
+
+        file.seekg((n - 1) * sizeof(person));
+        file.read((char *)&pers, sizeof(person));
+        cout << "Modified data in record " << n << ":\n";
         pers.showdata();
-        file.read((char *)&pers, sizeof(pers));
     }
-
-    // Modifying a record
-    int recordNumber;
-    cout << "\nEnter record number to modify: ";
-    cin >> recordNumber;
-
-    file.clear();  // Clear EOF flag
-    file.seekg(0); // Move to the beginning of the file
-    int currentRecord = 0;
-    long pos;
-
-    while (!file.eof())
+    else
     {
-        pos = file.tellg(); // Save the position of the current record
-        file.read((char *)&pers, sizeof(pers));
-        if (++currentRecord == recordNumber)
-        {
-            cout << "\nCurrent data of record " << recordNumber << ":\n";
-            pers.showdata();
-            cout << "\nEnter new data for record " << recordNumber << ":\n";
-            pers.getdata();
-            file.seekp(pos); // Move to the position of the record
-            file.write((char *)&pers, sizeof(pers));
-            cout << "\nRecord updated successfully!\n";
-            break;
-        }
+        cout << "Record not found\n";
     }
-
-    if (currentRecord < recordNumber)
-    {
-        cout << "Record number " << recordNumber << " does not exist.\n";
-    }
-
-    // Displaying all records after modification
-    file.clear();
-    file.seekg(0);
-    cout << "\nUpdated records in the file:\n";
-    i = 0;
-    file.read((char *)&pers, sizeof(pers));
-    while (!file.eof())
-    {
-        cout << "Person " << ++i << ": ";
-        pers.showdata();
-        file.read((char *)&pers, sizeof(pers));
-    }
-
     file.close();
     return 0;
 }
